@@ -29,6 +29,10 @@ void drawline(float ax, float ay, float bx, float by){
     glEnd();
 }
 
+void clipping(){
+    gluOrtho2D(0, 100, 0, 100);
+}
+
 float mirror_x(float a, float b, float ax, float ay, float bx, float by){
     float p = ay - by;
     float q = bx - ax;
@@ -55,7 +59,7 @@ void display() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black and opaque
 	glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer
 
-    cout << "Input titik x1, y1, x2, y2" << endl;
+    cout << "Input titik garis x1, y1, x2, y2" << endl;
     float ax;
     float ay;
     float bx;
@@ -85,14 +89,13 @@ void display() {
  
 	glFlush();
 }
- 
-/* Main function: GLUT runs as a console application starting at main()  */
+
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
-	glutCreateWindow("Tugas 03 - Baskara");
+	glutCreateWindow("Tugas 04 - Baskara");
 	glutInitWindowSize(100, 100);
 	glMatrixMode(GL_PROJECTION);
-	gluOrtho2D(0, 100, 0, 100);
+	clipping();
 	glutDisplayFunc(display);
 	glutMainLoop();
 	return 0;
